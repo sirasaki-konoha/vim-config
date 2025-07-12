@@ -22,7 +22,7 @@ Plug 'ziglang/zig.vim'
 " theme
 Plug 'gruvbox-community/gruvbox'
 
-" なにこれ
+" コードのコメントアウトを簡単にするやつ（gcc など）
 Plug 'tpope/vim-commentary'
 
 " skkをvim内で使うやつ
