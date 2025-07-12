@@ -95,14 +95,6 @@ let g:eskk#dictionary = {
       \ 'encoding': 'utf-8',
       \ }
 
-
-" ユーザー辞書（書き込み可）
-let g:eskk#dictionary = {
-      \ 'file': '~/.skk-jisyo',
-      \ 'sorted': 0,
-      \ 'encoding': 'utf-8',
-      \ }
-
 " SKK有効化トグルキー（任意）
 inoremap <C-j> <Plug>(eskk:toggle)
 
