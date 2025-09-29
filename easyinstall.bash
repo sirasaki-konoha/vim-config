@@ -2,7 +2,7 @@
 set -eu
 
 
-depend=("figlet" "curl" "vim" "cp")
+depend=("curl" "vim" "cp")
 missing=()
 
 for cmd in "${depend[@]}"; do
@@ -21,8 +21,6 @@ if [[ "${#missing[@]}" -ne 0 ]]; then
 fi
 
 
-figlet "vim-config"
-
 echo "This installer is copy vimrc files to your home directory"
 printf "Allow? "
 read -n 1 key
@@ -33,12 +31,12 @@ if [[ "$key" =~ ^(y|yes|Y)$ ]];then
 	printf "\x1b[36m=>\x1b[0m cp ./vimrc \"$HOME/.vimrc\"\n"
 	cp ./vimrc "$HOME/.vimrc"
 
-	printf "\x1b[36m=>\x1b[0m curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\n"
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	printf "\x1b[36m=>\x1b[0m curl -fLo ~/.vim/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim --create-dirs https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim\n"
+	curl -fLo ~/.vim/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim --create-dirs \
+					https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim
 
-	printf "\x1b[36m=>\x1b[0m vim +PlugInstall\n"
-	vim +PlugInstall
+	printf "\x1b[36m=>\x1b[0m vim +JetpackSync\n"
+	vim +JetpackSync
 
 fi
 

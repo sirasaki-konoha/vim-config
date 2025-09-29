@@ -1,59 +1,37 @@
-" 開発用
-" set runtimepath+=/home/rock-db/develop/mpc.vim
+packadd vim-jetpack
 
+call jetpack#begin()
+  Jetpack 'tani/vim-jetpack'
+  Jetpack 'obcat/vim-hitspop'
+  Jetpack 'tpope/vim-commentary'
+  Jetpack 'tpope/vim-commentary'
+  Jetpack 'dominikduda/vim_current_word'
+  Jetpack 'ConradIrwin/vim-bracketed-paste'
+  Jetpack 'ctrlpvim/ctrlp.vim'
+	Jetpack 'neoclide/coc.nvim', {'branch': 'release'}
+  Jetpack 'karoliskoncevicius/moonshine-vim'
+	Jetpack 'sirasaki-konoha/mpc.vim'
+	Jetpack 'lambdalisue/vim-fern'
+  Jetpack 'lambdalisue/vim-fern-hijack'
+	Jetpack 'lambdalisue/nerdfont.vim'
+  Jetpack 'lambdalisue/vim-fern-renderer-nerdfont'
+	Jetpack 'simeji/winresizer'
+call jetpack#end()
 
-call plug#begin()
-
-" ステータスバー
-Plug 'itchyny/lightline.vim'
-
-" LSPとか
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" ファイルビューワー
-Plug 'lambdalisue/vim-fern'
-
-" :edit とかで起動するファイルマネージャーをfernにするやつ
-Plug 'lambdalisue/vim-fern-hijack'
-
-" zigの公式vimプラグイン
-Plug 'ziglang/zig.vim'
-
-" theme
-Plug 'gruvbox-community/gruvbox'
-
-" コードのコメントアウトを簡単にするやつ（gcc など）
-Plug 'tpope/vim-commentary'
-
-" skkをvim内で使うやつ
-Plug 'vim-skk/eskk.vim'
-
-" mpcをvim内から動かしたい！
-Plug 'rock-db/mpc.vim'
-
-call plug#end()
-
-set background=dark
-colorscheme gruvbox
-
-set autoindent
-
-autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
-
-
-" Fern keybinds
+"""""""""""""" leader
 let mapleader = "\<Space>"
-nnoremap <Leader>f :Fern . -drawer -reveal=% -toggle -width=25<CR>
 
+"""""""""""""" colorscheme
+colorscheme moonshine
 
-" 再インデント用
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
-xnoremap <Leader>e gc
+"""""""""""""" mpc.vim
+nnoremap <silent> <C-m> :MpcPlaylist<CR>
 
+"""""""""""""" Fern
+let g:fern#renderer = "nerdfont"
+nnoremap <Leader>e :Fern . -drawer -reveal=% -toggle -width=25<CR>
 
-" Coc
+"""""""""""""" Coc
 autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
 
 " Enterキーで候補があればそれを確定、なければ改行
@@ -72,45 +50,16 @@ nmap <silent> gr <Plug>(coc-references)
 " ホバーで型情報やドキュメントを表示
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 
-" vim-mpcの設定
-nnoremap <Leader>m :MpcPlaylist<CR>
-nnoremap <silent>+ :MpcVolumeUP<CR>
-nnoremap <silent>- :MpcVolumeDown<CR>
-nnoremap <Leader>n :MpcPlayNext<CR>
-nnoremap <Leader>p :MpcPlayPrev<CR>
+"""""""""""""" hlsearch
+set hlsearch
+let g:vim_current_word#highlight_current_word = 0
+let g:vim_current_word#highlight_delay = 500
 
-
-" eskkの設定
-let g:eskk#enable_dictionary_cache = 0
-let g:eskk#large_dictionary = {
-      \ 'path': expand('~/.skk/SKK-JISYO.L.utf8'),
-      \ 'sorted': 1,
-      \ 'encoding': 'utf-8',
-      \ }
-
-
-let g:eskk#dictionary = {
-      \ 'file': expand('~/.skk-jisyo'),
-      \ 'sorted': 0,
-      \ 'encoding': 'utf-8',
-      \ }
-
-" SKK有効化トグルキー（任意）
-inoremap <C-j> <Plug>(eskk:toggle)
-
-" lightlineと連携（任意）
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'eskk' ], [ 'filename' ] ],
-      \ },
-      \ 'component_function': {
-      \   'eskk': 'eskk#statusline',
-      \ }
-      \ }
-
-
-" 普通にキーバインド
-nnoremap Q :bprev<CR>
-nnoremap E :bnext<CR>
+"""""""""""""" indent
+set autoindent
+set smartindent
+set cindent
+set smarttab
+set tabstop=2
 
 
