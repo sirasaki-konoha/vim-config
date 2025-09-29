@@ -1,20 +1,21 @@
 packadd vim-jetpack
 
 call jetpack#begin()
-	Jetpack 'tani/vim-jetpack'
-	Jetpack 'obcat/vim-hitspop'
-	Jetpack 'tpope/vim-commentary'
-	Jetpack 'tpope/vim-commentary'
-	Jetpack 'dominikduda/vim_current_word'
-	Jetpack 'ConradIrwin/vim-bracketed-paste'
-	Jetpack 'ctrlpvim/ctrlp.vim'
+  Jetpack 'tani/vim-jetpack'
+  Jetpack 'obcat/vim-hitspop'
+  Jetpack 'tpope/vim-commentary'
+  Jetpack 'tpope/vim-commentary'
+	Jetpack 'tpope/vim-sensible'
+  Jetpack 'dominikduda/vim_current_word'
+  Jetpack 'ConradIrwin/vim-bracketed-paste'
+  Jetpack 'ctrlpvim/ctrlp.vim'
 	Jetpack 'neoclide/coc.nvim', {'branch': 'release'}
-	Jetpack 'karoliskoncevicius/moonshine-vim'
+  Jetpack 'karoliskoncevicius/moonshine-vim'
 	Jetpack 'sirasaki-konoha/mpc.vim'
 	Jetpack 'lambdalisue/vim-fern'
-	Jetpack 'lambdalisue/vim-fern-hijack'
+  Jetpack 'lambdalisue/vim-fern-hijack'
 	Jetpack 'lambdalisue/nerdfont.vim'
-	Jetpack 'lambdalisue/vim-fern-renderer-nerdfont'
+  Jetpack 'lambdalisue/vim-fern-renderer-nerdfont'
 	Jetpack 'simeji/winresizer'
 call jetpack#end()
 
@@ -61,5 +62,8 @@ set smartindent
 set cindent
 set smarttab
 set tabstop=2
+set shiftwidth=2
+set softtabstop=0
+
 
 
