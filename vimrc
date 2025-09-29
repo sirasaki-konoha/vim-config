@@ -16,6 +16,7 @@ call jetpack#begin()
 	Jetpack 'lambdalisue/nerdfont.vim'
 	Jetpack 'lambdalisue/vim-fern-renderer-nerdfont'
 	Jetpack 'simeji/winresizer'
+	Jetpack 'jiangmiao/auto-pairs'
 call jetpack#end()
 
 """""""""""""" leader
@@ -25,7 +26,10 @@ let mapleader = "\<Space>"
 colorscheme moonshine
 
 """""""""""""" mpc.vim
-nnoremap <silent> <C-m> :MpcPlaylist<CR>
+nnoremap <silent> <Leader>m :MpcPlaylist<CR>
+nnoremap <silent> <Leader>l :MpcLibrary<CR>
+nnoremap <silent> <Leader>> :MpcPlayNext<CR>
+nnoremap <silent> <Leader>< :MpcPlayPrev<CR>
 
 """""""""""""" Fern
 let g:fern#renderer = "nerdfont"
@@ -34,8 +38,7 @@ nnoremap <Leader>e :Fern . -drawer -reveal=% -toggle -width=25<CR>
 """""""""""""" Coc
 autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
 
-" Enterキーで候補があればそれを確定、なければ改行
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Tabで補完候補の移動
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
